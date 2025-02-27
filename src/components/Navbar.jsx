@@ -20,8 +20,8 @@ export const Navbar = () => {
         <SearchInput />
         <div className="w-full  grid grid-cols-[2fr_1fr_1fr]">
           <CostumeButton text="login" />
-          <img src={user} alt="user" className="h-6 m-auto" />
-          <img src={cart} alt="cart" className="h-6 m-auto" />
+          <img src={user} alt="user" className="h-6 m-auto  cursor-pointer" />
+          <img src={cart} alt="cart" className="h-6 m-auto  cursor-pointer" />
         </div>
       </div>
     </nav>

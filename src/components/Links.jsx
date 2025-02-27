@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export const Links = () => {
   return (
-    <div className="grid grid-cols-[1fr_1fr_2fr_1fr]  font-poppins-light text-sm">
+    <div className="grid grid-cols-[1fr_1fr_2fr_1fr]  font-poppins-light text-md">
       <Link to="/shop" className=" m-auto ">
         Shop
       </Link>
