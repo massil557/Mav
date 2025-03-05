@@ -200,12 +200,14 @@ export const Home = () => {
           {/* {/* <button className="rounded-2xl ml-[605px]  bg-black bg-white text-sm  w-[150px] h-[30px]  cursor-pointer	font-poppins-regular">
             Buy Now
           </button>  */}
-          <CostumeButton
-            text="Buy Now"
-            w="150px"
-            hg="30px"
-            styles="ml-[605px]"
-          />
+          <div className="flex items-center w-inherit">
+            <CostumeButton
+              text="Buy Now"
+              w="150px"
+              hg="30px"
+              styles="ml-[605px]"
+            />
+          </div>
         </div>
       </MotionComponent>
 
