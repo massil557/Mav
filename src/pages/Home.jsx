@@ -192,7 +192,7 @@ export const Home = () => {
       </main>
 
       <MotionComponent amount={0.7}>
-        <div className="bg-[#181818] w-[1349px] h-[150px] m-auto ">
+        <div className="bg-[#181818] min-w-[100vw] h-[150px] m-auto ">
           <p className="font-poppins-semibold pt-10 text-white text-5xl text-center  mb-5">
             All of this and more on MAVERICK
           </p>
