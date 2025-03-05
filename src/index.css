@@ -29,6 +29,10 @@
   font-family: 'PoppinsThin';
   src: url('./assets/fonts/Poppins-Thin.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'GreatVibesRegular';
+  src: url('./assets/fonts/GreatVibes-Regular.ttf') format('truetype');
+}
 
 @layer base {
   .font-poppins-ExtraLight {
@@ -49,5 +53,8 @@
 
   .font-poppins-semibold {
     font-family: 'PoppinsSemiBold', sans-serif;
+  }
+  .font-GreatVibes {
+    font-family: 'GreatVibesRegular', sans-serif;
   }
 }
