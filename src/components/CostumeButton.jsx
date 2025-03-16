@@ -1,4 +1,4 @@
-export const CostumeButton = ({ text, w, hg, black, styles }) => {
+export const CostumeButton = ({ text, w, hg, black, styles, handel }) => {
   return (
     <>
       <button
@@ -9,6 +9,7 @@ export const CostumeButton = ({ text, w, hg, black, styles }) => {
           backgroundColor: black ? 'black' : 'white',
           color: black ? 'white' : 'black',
         }}
+        onClick={handel}
       >
         {text}
       </button>

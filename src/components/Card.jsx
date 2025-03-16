@@ -1,14 +1,28 @@
 import React from 'react'
+import '@fortawesome/fontawesome-free/css/all.min.css'
 
-export const Card = ({ src, title }) => {
+export const Card = ({ img, name, price = 2000, favorite, rated }) => {
   return (
-    <div className="w-[190px] h-[250px] transition-transform duration-300 ease-in-out hover:scale-110 rounded-[30px] bg-[#e0e0e0] m-10 shadow-[15px_15px_30px_#bebebe,-15px_-15px_30px_#ffffff] grid grid-row-2">
+    <div className="w-[200px] h-[320px]  overflow-hidden font-poppins-regular m-10  ">
       <img
-        src={src}
-        alt={title}
-        className="object contain m-auto rounded-[30px] h-[200px]"
+        src={img}
+        alt={name}
+        className="object contain  m-auto mt-0 mb-0  h-[200px]  transition-transform duration-300 ease-in-out hover:scale-110"
       />
-      <p className="font-poppins-regular ml-5"> {title}</p>
+      <div className="w-full mt-3 ml-1">
+        <p className=" mb-3"> {name}</p>
+        <div>
+          <i className="fa-solid fa-star text-yellow-500 "></i>
+          <i className="fa-solid fa-star text-yellow-500 "></i>
+          <i className="fa-solid fa-star text-yellow-500 "></i>
+          <i className="fa-solid fa-star text-yellow-500 "></i>
+          <i className="fa-solid fa-star text-yellow-500 "></i>
+        </div>
+        <div className="flex justify-between  ">
+          <p>{`${price}DA`}</p>
+          <i className="fa-regular fa-heart fa-lg text-gray-500 mt-[11px] mr-[7px] transition-transform duration-300 ease-in-out hover:scale-130"></i>
+        </div>
+      </div>
     </div>
   )
 }

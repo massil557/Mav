@@ -24,7 +24,8 @@ import {
   Rolex,
 } from '../../assets'
 import CostumeButton from '../components/CostumeButton'
-
+const Banner_image =
+  'https://content.asos-media.com/-/media/homepages/mw/2025/march/03-gbl/wk27_28/wk27_28/heroes/mw_dt_hero_2880x1280_colour.jpg'
 export const Home = () => {
   // const styles = {
   //   main: '',
@@ -35,11 +36,11 @@ export const Home = () => {
     target: container,
     offset: ['start end', 'end start'],
   })
-  const y = useTransform(scrollYProgress, [0, 1], [0, window.innerHeight * 3])
+  const y = useTransform(scrollYProgress, [0, 1], [0, window.innerHeight * 3.3])
   const y1 = useTransform(
     scrollYProgress,
     [0, 1],
-    [0, window.innerHeight * 2.5]
+    [0, window.innerHeight * 2.7]
   )
   const y2 = useTransform(
     scrollYProgress,
@@ -59,10 +60,10 @@ export const Home = () => {
     requestAnimationFrame(raf)
   })
   return (
-    <div className="pt-[100px]">
-      <h2 className="font-poppins-semibold ml-5 mb-10 text-xl ">
-        Welcome Massil
-      </h2>
+    <div className="pt-[50px] overflow-x-hidden">
+      <div className="">
+        <img src={Banner_image} alt="" className="object-cover " />
+      </div>
 
       {/* <div className="w-full relative mb-10">
         <p className="absolute top-3 left-3 text-4xl w-full  font-poppins-semibold text-center m-auto">
@@ -179,7 +180,6 @@ export const Home = () => {
         </div> */}
 
       {/* </MotionComponent> */}
-      <div className="mb-[200px] h-[100vh]"></div>
       <main className={styles.main}>
         <div className={styles.spacer}></div>
 
@@ -200,46 +200,53 @@ export const Home = () => {
           {/* {/* <button className="rounded-2xl ml-[605px]  bg-black bg-white text-sm  w-[150px] h-[30px]  cursor-pointer	font-poppins-regular">
             Buy Now
           </button>  */}
-          <div className="flex items-center w-inherit">
-            <CostumeButton
-              text="Buy Now"
-              w="150px"
-              hg="30px"
-              styles="ml-[605px]"
-            />
+          <div className="flex items-center justify-center w-full m-auto">
+            <CostumeButton text="Buy Now" w="150px" hg="30px" />
           </div>
         </div>
       </MotionComponent>
 
-      <main className="grid grid-rows-3 mt-[300px] ">
+      <main className="grid grid-rows-3 mt-[150px] ">
         <MotionComponent amount={0.5}>
-          <h1 className="font-poppins-semibold text-3xl ml-[-100px] absolute -left-8	 ">
-            Best Sellers
-          </h1>
-          <div className="grid grid-cols-3 mt-10 m-auto">
-            <Card src={dark} title="Polo T-Shirt Black" />
-            <Card src={magma} title="Polo T-Shirt Magma" />
-            <Card src={emerald} title="Polo T-Shirt Emerald" />
+          <div className="relative">
+            <h1 className="font-poppins-semibold text-3xl ml-[-100px]  absolute left-[110px]	 ">
+              Best Sellers
+            </h1>
+            <div className="grid grid-cols-5 mt-10 m-auto">
+              <Card img={dark} name="Polo T-Shirt Black" />
+              <Card img={magma} name="Polo T-Shirt Magma" />
+              <Card img={emerald} name="Polo T-Shirt Emerald" />
+              <Card img={dark} name="Polo T-Shirt Black" />
+              <Card img={magma} name="Polo T-Shirt Magma" />
+            </div>
           </div>
         </MotionComponent>
         <MotionComponent amount={0.5}>
-          <h1 className="font-poppins-semibold text-3xl ml-[-100px] absolute -left-8">
-            Men's Best Sellers
-          </h1>
-          <div className="grid grid-cols-3 m-auto mt-10">
-            <Card src={dark} title="Polo T-Shirt Black" />
-            <Card src={magma} title="Polo T-Shirt Magma" />
-            <Card src={emerald} title="Polo T-Shirt Emerald" />
+          <div className="relative">
+            <h1 className="font-poppins-semibold text-3xl ml-[-100px] absolute left-[110px]">
+              Men's Best Sellers
+            </h1>
+            <div className="grid grid-cols-5 m-auto mt-10">
+              <Card img={dark} name="Polo T-Shirt Black" />
+              <Card img={magma} name="Polo T-Shirt Magma" />
+              <Card img={emerald} name="Polo T-Shirt Emerald" />
+              <Card img={dark} name="Polo T-Shirt Black" />
+              <Card img={magma} name="Polo T-Shirt Magma" />
+            </div>
           </div>
         </MotionComponent>
         <MotionComponent amount={0.5}>
-          <h1 className="font-poppins-semibold text-3xl ml-[-100px] absolute -left-8">
-            Women's Best Sellers
-          </h1>
-          <div className="grid grid-cols-3 mt-10 m-auto">
-            <Card src={perfume} title="Perfume" />
-            <Card src={tint} title="Skin Tint" />
-            <Card src={powder} title="Skin Powder" />
+          <div className="relative">
+            <h1 className="font-poppins-semibold text-3xl ml-[-100px] absolute left-[110px]">
+              Women's Best Sellers
+            </h1>
+            <div className="grid grid-cols-5 mt-10 m-auto">
+              <Card img={perfume} name="Perfume" />
+              <Card img={tint} name="Skin Tint" />
+              <Card img={powder} name="Skin Powder" />
+              <Card img={tint} name="Skin Tint" />
+              <Card img={powder} name="Skin Powder" />
+            </div>
           </div>
         </MotionComponent>
       </main>
