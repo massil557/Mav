@@ -1,7 +1,16 @@
-export const CostumeButton = ({ text, w, hg, black, styles, handel }) => {
+export const CostumeButton = ({
+  text,
+  w,
+  hg,
+  black,
+  styles,
+  handel,
+  submit,
+}) => {
   return (
     <>
       <button
+        type={submit ? 'submit' : 'button'}
         className={`rounded-2xl bg-black  text-sm cursor-pointer	font-poppins-regular ${styles}`}
         style={{
           width: w,
