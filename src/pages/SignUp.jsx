@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import InputField from '../components/InputField'
 import CostumeButton from '../components/CostumeButton'
 import ImageUploadField from '../components/ImageUploadField'
 import axios from 'axios'
+import { GlobalContext } from '../GlobalProvider'
 
 const SignUp = () => {
+  const { user, setUser } = useContext(GlobalContext)
+  const navigate = useNavigate()
   const [userInfo, setUserInfo] = useState({
     accountType: 'client',
     email: '',
@@ -15,6 +19,11 @@ const SignUp = () => {
     sex: 'male',
     address: '',
     product: 'men',
+    businessName: '',
+    accountHolderName: '',
+    bankAccountNumber: '',
+    bankRoutingNumber: '',
+    taxId: '',
   })
 
   const [errors, setErrors] = useState({
@@ -23,12 +32,12 @@ const SignUp = () => {
   })
 
   const validatePhoneNumber = (phone) => {
-    const algerianPhoneRegex = /^(?:\+213|0)(5|6|7)\d{8}$/ // Matches +213 or 0 followed by 9 digits starting with 5, 6, or 7
+    const algerianPhoneRegex = /^(?:\+213|0)(5|6|7)\d{8}$/
     return algerianPhoneRegex.test(phone)
   }
 
   const validateEmail = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/ // Basic email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     return emailRegex.test(email)
   }
 
@@ -60,31 +69,161 @@ const SignUp = () => {
       alert('Please enter your address')
       return
     }
+
+    if (userInfo.accountType === 'magazine') {
+      if (!userInfo.businessName || userInfo.businessName.length < 3) {
+        alert('Please enter a valid business name (at least 3 characters).')
+        return
+      }
+      if (
+        !userInfo.accountHolderName ||
+        userInfo.accountHolderName.length < 3
+      ) {
+        alert(
+          'Please enter a valid account holder name (at least 3 characters).'
+        )
+        return
+      }
+      if (
+        !userInfo.bankAccountNumber ||
+        !/^\d{10,20}$/.test(userInfo.bankAccountNumber)
+      ) {
+        alert(
+          'Please enter a valid bank account number (10 to 20 digits only).'
+        )
+        return
+      }
+      if (
+        !userInfo.bankRoutingNumber ||
+        !/^\d{9}$/.test(userInfo.bankRoutingNumber)
+      ) {
+        alert('Please enter a valid bank routing number (9 digits).')
+        return
+      }
+      if (!userInfo.taxId || userInfo.taxId.length < 5) {
+        alert(
+          'Please enter a valid tax identification number (at least 5 characters).'
+        )
+        return
+      }
+    }
+    let clientInfo
     if (userInfo.accountType === 'client') {
-      const { email, phone, username, address, password, sex } = userInfo
-      const clientInfo = { email, phone, username, address, password, sex }
-      console.log(clientInfo)
+      const { email, phone, username, address, password, sex, accountType } =
+        userInfo
+      clientInfo = {
+        email,
+        phone,
+        username,
+        address,
+        password,
+        sex,
+        accountType,
+      }
       try {
         const response = await axios.post(
           'http://localhost:3000/client/signup',
           clientInfo
         )
-        console.log('Response:', response.data)
+
         alert('Sign up successful!')
+        setUserInfo({
+          accountType: 'client',
+          email: '',
+          phone: '',
+          username: '',
+          password: '',
+          confirmPassword: '',
+          sex: 'male',
+          address: '',
+          product: 'men',
+
+          businessName: '',
+          accountHolderName: '',
+          bankAccountNumber: '',
+          bankRoutingNumber: '',
+          taxId: '',
+        })
+        const { accessToken, refreshToken, savedUser } = response.data
+        console.log(savedUser)
+        localStorage.setItem('accessToken', accessToken)
+        localStorage.setItem('refreshToken', refreshToken)
+        localStorage.setItem('user', JSON.stringify(savedUser))
+
+        setUser(savedUser)
+
+        navigate('/')
       } catch (error) {
         console.error('Error:', error)
         alert('An error occurred during sign up.')
       }
-    }
 
-    // Proceed with form submission logic
-    console.log('Form submitted successfully:', userInfo)
+      // Proceed with form submission logic
+      console.log('Form submitted successfully:', userInfo)
+    } else {
+      const {
+        email,
+        phone,
+        username,
+        address,
+        product,
+        password,
+        sex,
+        accountType,
+        businessName,
+        accountHolderName,
+        bankAccountNumber,
+        bankRoutingNumber,
+        taxId,
+      } = userInfo
+
+      clientInfo = {
+        email,
+        phone,
+        username,
+        address,
+        product,
+        password,
+        sex,
+        accountType,
+        businessName,
+        accountHolderName,
+        bankAccountNumber,
+        bankRoutingNumber,
+        taxId,
+      }
+      try {
+        await axios.post(
+          'http://localhost:3000/magazine/inscription',
+          clientInfo
+        )
+        setUserInfo({
+          accountType: 'client',
+          email: '',
+          phone: '',
+          username: '',
+          password: '',
+          confirmPassword: '',
+          sex: 'male',
+          address: '',
+          product: 'men',
+          businessName: '',
+          accountHolderName: '',
+          bankAccountNumber: '',
+          bankRoutingNumber: '',
+          taxId: '',
+        })
+        navigate('/')
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
 
   return (
     <div className="min-h-screen min-w-full  flex justify-center items-center ">
       <div className=" rounded-[10px] ">
-        <div className=" w-[450px] h-[450px]   ">
+        <div className=" w-[450px] min-h-[450px]   ">
           <h1 className=" p-5 text-3xl font-poppins-semibold text-center">
             Sign Up
           </h1>
@@ -210,18 +349,79 @@ const SignUp = () => {
                     <option value="both">products for both genders</option>
                   </select>
                 </div>
-                <div className=" w-full flex justify-center mt-[30px] relative">
-                  <p className="font-poppins-regular absolute left-[60px]">
-                    upload a picture of your products
-                  </p>
+
+                <div className="w-full flex justify-center">
+                  <InputField
+                    placeholder={'Business Name'}
+                    styles={
+                      'w-[350px] h-[40px] mt-[30px] rounded-[15px] p-4 focus:outline-none bg-gray-200 text-start font-poppins-regular text-md'
+                    }
+                    type={'text'}
+                    value={userInfo.businessName || ''}
+                    setValue={(e) => {
+                      setUserInfo({ ...userInfo, businessName: e.target.value })
+                    }}
+                  />
                 </div>
                 <div className="w-full flex justify-center">
-                  <ImageUploadField
-                    styles="w-[350px] h-[40px] rounded-[15px] focus:outline-none bg-gray-200 text-start font-poppins-regular text-md"
-                    value={userInfo.productImage}
-                    setValue={(file) =>
-                      setUserInfo({ ...userInfo, productImage: file })
+                  <InputField
+                    placeholder={'Account Holder Name'}
+                    styles={
+                      'w-[350px] h-[40px] mt-[30px] rounded-[15px] p-4 focus:outline-none bg-gray-200 text-start font-poppins-regular text-md'
                     }
+                    type={'text'}
+                    value={userInfo.accountHolderName || ''}
+                    setValue={(e) => {
+                      setUserInfo({
+                        ...userInfo,
+                        accountHolderName: e.target.value,
+                      })
+                    }}
+                  />
+                </div>
+                <div className="w-full flex justify-center">
+                  <InputField
+                    placeholder={'Bank Account Number'}
+                    styles={
+                      'w-[350px] h-[40px] mt-[30px] rounded-[15px] p-4 focus:outline-none bg-gray-200 text-start font-poppins-regular text-md'
+                    }
+                    type={'text'}
+                    value={userInfo.bankAccountNumber || ''}
+                    setValue={(e) => {
+                      setUserInfo({
+                        ...userInfo,
+                        bankAccountNumber: e.target.value,
+                      })
+                    }}
+                  />
+                </div>
+                <div className="w-full flex justify-center">
+                  <InputField
+                    placeholder={'Bank Routing Number'}
+                    styles={
+                      'w-[350px] h-[40px] mt-[30px] rounded-[15px] p-4 focus:outline-none bg-gray-200 text-start font-poppins-regular text-md'
+                    }
+                    type={'text'}
+                    value={userInfo.bankRoutingNumber || ''}
+                    setValue={(e) => {
+                      setUserInfo({
+                        ...userInfo,
+                        bankRoutingNumber: e.target.value,
+                      })
+                    }}
+                  />
+                </div>
+                <div className="w-full flex justify-center">
+                  <InputField
+                    placeholder={'Tax Identification Number (TIN)'}
+                    styles={
+                      'w-[350px] h-[40px] mt-[30px] rounded-[15px] p-4 focus:outline-none bg-gray-200 text-start font-poppins-regular text-md'
+                    }
+                    type={'text'}
+                    value={userInfo.taxId || ''}
+                    setValue={(e) => {
+                      setUserInfo({ ...userInfo, taxId: e.target.value })
+                    }}
                   />
                 </div>
               </>

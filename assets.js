@@ -1,7 +1,7 @@
 import logo from './src/assets/images/mavricL.png'
 import loop from './src/assets/icons/loupe.png'
 import cart from './src/assets/icons/cart.png'
-import user from './src/assets/icons/user.png'
+import user1 from './src/assets/icons/user.png'
 import dark from './src/assets/images/blackPolo2.png'
 import emerald from './src/assets/images/Emerald-Polo2.png'
 import magma from './src/assets/images/Polo2.png'
@@ -42,6 +42,6 @@ const pictsTab = [man1, man2, man3, man5, man6, man7, makeup, elexir, powder2, p
 
 
 export {
-    logo, loop, user, cart, dark, magma, emerald, perfume, tint, powder, david, pictsTab, path, sky,
+    logo, loop, user1, cart, dark, magma, emerald, perfume, tint, powder, david, pictsTab, path, sky,
     sunset, louboutin, makeup, elexir, skincare, Rolex
 }

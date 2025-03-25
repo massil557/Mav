@@ -5,7 +5,6 @@ import MotionComponent from '../components/MotionComponent'
 import Column from '../components/Column'
 import styles from '../page.module.scss'
 import { useRef } from 'react'
-import Lenis from '@studio-freight/lenis'
 
 import {
   dark,
@@ -38,16 +37,6 @@ export const Home = () => {
   )
   const y3 = useTransform(scrollYProgress, [0, 1], [0, window.innerHeight * 2])
 
-  useEffect(() => {
-    const lenis = new Lenis()
-
-    function raf(time) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-
-    requestAnimationFrame(raf)
-  })
   return (
     <div className="pt-[50px] overflow-x-hidden">
       <div className="">

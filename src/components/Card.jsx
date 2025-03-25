@@ -1,8 +1,9 @@
 import React from 'react'
 import '@fortawesome/fontawesome-free/css/all.min.css'
 import { useState } from 'react'
-
+import { useNavigate } from 'react-router-dom'
 export const Card = ({
+  id,
   img,
   name,
   price = 2000,
@@ -11,13 +12,19 @@ export const Card = ({
   isOnSale = true,
   amount = 0.4,
 }) => {
+  const navigate = useNavigate()
+
+  const handelClick = () => {
+    navigate(`/product/${id}`)
+  }
   const [isFavorite, setIsFavorite] = useState(favorite)
   return (
-    <div className="w-[200px] h-[320px]  overflow-hidden font-poppins-regular m-10  ">
+    <div className="w-[200px] h-[320px] cursor-pointer overflow-hidden font-poppins-regular m-10">
       <img
         src={img}
         alt={name}
         className="object contain  m-auto mt-0 mb-0  h-[200px]  transition-transform duration-300 ease-in-out hover:scale-110"
+        onClick={handelClick}
       />
       <div className="w-full mt-3 ml-1">
         <p className=" mb-3"> {name}</p>
