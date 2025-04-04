@@ -40,9 +40,7 @@ const DetailedProductAdmin = () => {
 
   return (
     <div className="grid grid-cols-2 gap-8 p-8 pt-[100px]">
-      {/* Left Section: Images */}
       <div className="grid grid-cols-[1fr_4fr] gap-4">
-        {/* Thumbnail Images */}
         <div className="flex flex-col gap-4">
           {product.available.map((item, index) => (
             <img
@@ -55,7 +53,6 @@ const DetailedProductAdmin = () => {
           ))}
         </div>
 
-        {/* Main Image */}
         <div
           className={`relative w-full h-[500px] bg-gray-100 rounded overflow-hidden ${
             zoomed ? 'cursor-zoom-out' : 'cursor-zoom-in'
@@ -71,9 +68,7 @@ const DetailedProductAdmin = () => {
           />
         </div>
       </div>
-      {/* Right Section: Product Details */}
       <div className="grid grid-cols-[3fr_1.5fr] gap-4">
-        {/* Product Info */}
         <div>
           <h1 className="text-3xl font-bold">{product.name}</h1>
           <p className="text-gray-600 mt-2">{product.details}</p>
@@ -101,7 +96,6 @@ const DetailedProductAdmin = () => {
             </div>
           )}
 
-          {/* Rating System */}
           <div className="mt-6">
             <p className="text-lg font-semibold">Rate this product:</p>
             <div className="flex gap-2 mt-2">
@@ -118,13 +112,12 @@ const DetailedProductAdmin = () => {
           </div>
         </div>
 
-        {/* Buy Section */}
         <div className="flex flex-col items-center">
           <button
             onClick={handleBuyNow}
             className="bg-black text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition"
           >
-            Buy Now
+            Add to cart
           </button>
 
           <div className="mt-4">
@@ -142,7 +135,6 @@ const DetailedProductAdmin = () => {
           </div>
         </div>
       </div>
-      {/* Comment Section */}
 
       <div className="col-span-2 mt-8">
         <CommentSection productId={id} />
