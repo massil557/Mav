@@ -1,25 +1,20 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Card from './Card'
-
-const ProductComponent = ({ user }) => {
+import axios from 'axios'
+const NewProducts = () => {
   const [result, setResult] = useState(null)
-  const id = user._id
-
   useEffect(() => {
-    const getFavorite = async (id) => {
+    const Products = async () => {
       try {
-        const Products = await axios.get(
-          `http://localhost:3000/api/myProducts/${id}`
+        const NewProducts = await axios.get(
+          `http://localhost:3000/api/NewProducts`
         )
-
-        console.log(Products.data.MyProducts)
-        setResult(Products.data.MyProducts)
+        console.log(NewProducts)
+        setResult(NewProducts.data)
       } catch (error) {}
     }
-    getFavorite(id)
+    Products()
   }, [])
-
   return (
     result && (
       <div className="grid grid-cols-5 m-auto min-w-[80vw]">
@@ -32,7 +27,10 @@ const ProductComponent = ({ user }) => {
               name={element.name}
               price={element.price}
               rated={element.rating}
-              isOnSale={element.isOnSale}
+              isOnSale={false}
+              cards={result}
+              setCards={setResult}
+              admin={true}
             />
           )
         })}
@@ -41,4 +39,4 @@ const ProductComponent = ({ user }) => {
   )
 }
 
-export default ProductComponent
+export default NewProducts

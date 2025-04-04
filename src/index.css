@@ -58,3 +58,22 @@
     font-family: 'GreatVibesRegular', sans-serif;
   }
 }
+.back {
+  background: #076585; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #fff,
+    #076585
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #fff,
+    #076585
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.bgc {
+  /* background: url('https://www.transparenttextures.com/patterns/asfalt-light.png');
+  background-color: #111; Dark base for elegance */
+  background: linear-gradient(to bottom, #b3daf1 10%, white 90%);
+}

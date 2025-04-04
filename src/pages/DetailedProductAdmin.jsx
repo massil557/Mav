@@ -3,18 +3,18 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import CommentSection from '../components/CommentSection'
 
-const DetailedProduct = () => {
+const DetailedProductAdmin = () => {
   const { id } = useParams()
   const [product, setProduct] = useState(null)
-  const [selectedColor, setSelectedColor] = useState(null) // Track selected color
-  const [rating, setRating] = useState(0) // State for product rating
-  const [zoomed, setZoomed] = useState(false) // State for closer look
+  const [selectedColor, setSelectedColor] = useState(null)
+  const [rating, setRating] = useState(0)
+  const [zoomed, setZoomed] = useState(false)
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const results = await axios.get(
-          `http://localhost:3000/api/product/details/${id}`
+          `http://localhost:3000/api/newProduct/details/${id}`
         )
         setProduct(results.data)
       } catch (error) {
@@ -151,4 +151,4 @@ const DetailedProduct = () => {
   )
 }
 
-export default DetailedProduct
+export default DetailedProductAdmin

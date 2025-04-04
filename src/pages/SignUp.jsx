@@ -5,7 +5,7 @@ import CostumeButton from '../components/CostumeButton'
 import ImageUploadField from '../components/ImageUploadField'
 import axios from 'axios'
 import { GlobalContext } from '../GlobalProvider'
-
+import { login } from '../../assets'
 const SignUp = () => {
   const { user, setUser } = useContext(GlobalContext)
   const navigate = useNavigate()
@@ -221,9 +221,9 @@ const SignUp = () => {
   }
 
   return (
-    <div className="min-h-screen min-w-full  flex justify-center items-center ">
-      <div className=" rounded-[10px] ">
-        <div className=" w-[450px] min-h-[450px]   ">
+    <div className="w-[100vw] bg-gray-100 h-[100vh] flex justify-center  items-center ">
+      <div className=" shadow-xl rounded-[15px] grid grid-cols-2  h-[500px] w-[350] overflow-hidden ">
+        <div className=" w-[450px] min-h-[450px] overflow-auto ">
           <h1 className=" p-5 text-3xl font-poppins-semibold text-center">
             Sign Up
           </h1>
@@ -302,7 +302,10 @@ const SignUp = () => {
                 type={'password'}
                 value={userInfo.confirmPassword}
                 setValue={(e) => {
-                  setUserInfo({ ...userInfo, confirmPassword: e.target.value })
+                  setUserInfo({
+                    ...userInfo,
+                    confirmPassword: e.target.value,
+                  })
                 }}
               />
             </div>
@@ -359,7 +362,10 @@ const SignUp = () => {
                     type={'text'}
                     value={userInfo.businessName || ''}
                     setValue={(e) => {
-                      setUserInfo({ ...userInfo, businessName: e.target.value })
+                      setUserInfo({
+                        ...userInfo,
+                        businessName: e.target.value,
+                      })
                     }}
                   />
                 </div>
@@ -439,6 +445,13 @@ const SignUp = () => {
               />
             </div>
           </form>
+        </div>
+        <div className="w-full overflow-hidden relative rounded-tr-[15px] rounded-br-[15px]">
+          <img src={login} className="  w-[450px]  " alt="login" />
+          <p className="font-poppins-semibold  w-full text-center text-white absolute text-4xl bottom-[240px]">
+            you want to glow up? <br />
+            join Maverick
+          </p>
         </div>
       </div>
     </div>

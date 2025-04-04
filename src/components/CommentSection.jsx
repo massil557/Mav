@@ -4,13 +4,15 @@ import axios from 'axios'
 const CommentSection = ({ productId }) => {
   const [comments, setComments] = useState([])
   const [newComment, setNewComment] = useState('')
-
+  const user = JSON.parse(localStorage.getItem('user'))
+  const [toggle, setToggle] = useState(false)
   useEffect(() => {
     const fetchComments = async () => {
       try {
         const response = await axios.get(
           `http://localhost:3000/api/comments/${productId}`
         )
+        console.log(response.data)
         setComments(response.data)
       } catch (error) {
         console.error('Error fetching comments:', error)
@@ -18,19 +20,25 @@ const CommentSection = ({ productId }) => {
     }
 
     fetchComments()
-  }, [productId])
+  }, [toggle])
 
+  const isUserConnected = !!user
   const handleAddComment = async () => {
-    if (!newComment.trim()) return
-    try {
-      const response = await axios.post(
-        `http://localhost:3000/api/comments/${productId}`,
-        { text: newComment }
-      )
-      setComments((prev) => [...prev, response.data])
-      setNewComment('')
-    } catch (error) {
-      console.error('Error adding comment:', error)
+    if (isUserConnected) {
+      if (!newComment.trim()) return
+      try {
+        const response = await axios.post(
+          `http://localhost:3000/api/comments/${productId}`,
+          { text: newComment, userId: user._id }
+        )
+        setComments((prev) => [...prev, response.data])
+        setNewComment('')
+        setToggle(!toggle)
+      } catch (error) {
+        console.error('Error adding comment:', error)
+      }
+    } else {
+      alert('Please login to add a comment')
     }
   }
 
@@ -55,12 +63,20 @@ const CommentSection = ({ productId }) => {
         {comments.map((comment, index) => (
           <div
             key={index}
-            className="p-4 bg-white border border-gray-300 rounded-lg"
+            className="p-4 bg-white border border-gray-300 rounded-lg flex items-start space-x-4"
           >
-            <p className="text-gray-800">{comment.text}</p>
-            <p className="text-sm text-gray-500 mt-2">
-              Posted on {new Date(comment.createdAt).toLocaleString()}
-            </p>
+            <img
+              src={comment.imagePath}
+              alt={`${comment.username}'s profile`}
+              className="w-10 h-10 rounded-full"
+            />
+            <div>
+              <p className="font-bold text-gray-800">{comment.username}</p>
+              <p className="text-gray-800">{comment.text}</p>
+              <p className="text-sm text-gray-500 mt-2">
+                Posted on {new Date(comment.createdAt).toLocaleString()}
+              </p>
+            </div>
           </div>
         ))}
       </div>

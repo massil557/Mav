@@ -29,9 +29,9 @@ import louboutin from './src/assets/images/louboutin.jpg'
 import makeup from './src/assets/images/Ahhhh.jpg'
 import elexir from './src/assets/images/elexir.jpg'
 import skincare from './src/assets/images/skinCare.jpg'
-
-
-
+import login from './src/assets/images/forlogin3jpg.jpg'
+import signUpImage from './src/assets/images/forlogin4.jpg'
+import empty from './src/assets/images/empty.jpg'
 
 
 
@@ -42,6 +42,6 @@ const pictsTab = [man1, man2, man3, man5, man6, man7, makeup, elexir, powder2, p
 
 
 export {
-    logo, loop, user1, cart, dark, magma, emerald, perfume, tint, powder, david, pictsTab, path, sky,
-    sunset, louboutin, makeup, elexir, skincare, Rolex
+    login, logo, loop, user1, cart, dark, magma, emerald, perfume, tint, powder, david, pictsTab, path, sky,
+    sunset, louboutin, makeup, elexir, skincare, Rolex, signUpImage, empty
 }

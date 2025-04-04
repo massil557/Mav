@@ -136,6 +136,7 @@ const InsertProduct = () => {
             <option value="Fashion">Fashion & Style</option>
             <option value="Beauty">Beauty & Care</option>
             <option value="Fragrances">Fragrances</option>
+            <option value="Accessories">Accessories</option>
           </select>
         </div>
         <div className=" w-full flex justify-center ">

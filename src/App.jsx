@@ -7,10 +7,13 @@ import OnSales from './pages/OnSales'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
 import Lenis from '@studio-freight/lenis'
-import { Admin } from './pages/Admin'
+import Admin from './pages/Admin'
 import Magazine from './pages/Magazine'
 import InsertProduct from './pages/InsertProduct'
 import DetailedProduct from './pages/DetailedProduct'
+import Client from './pages/Client'
+import DetailedProductAdmin from './pages/DetailedProductAdmin'
+import MagazineInscription from './pages/MagazineInscription'
 
 function App() {
   useEffect(() => {
@@ -31,12 +34,22 @@ function App() {
             <Route path="/shop" element={<Shop />} />
             <Route path="/onSales" element={<OnSales />} />
             <Route path="/product/:id" element={<DetailedProduct />} />
+            <Route
+              path="/productDetailed/:id"
+              element={<DetailedProductAdmin />}
+            />
           </Route>
           <Route path="/Login" element={<Login />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/Admin" element={<Admin />} />
           <Route path="/Magazine" element={<Magazine />} />
           <Route path="/InsertProduct" element={<InsertProduct />} />
+          <Route path="/Client" element={<Client />} />
+          <Route
+            path="/MagazineInscription"
+            element={<MagazineInscription />}
+          />
+          <Route path="newMagazine/:id" element={<MagazineInscription />} />
         </Routes>
       </BrowserRouter>
     </>
