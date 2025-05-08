@@ -14,6 +14,11 @@ import DetailedProduct from './pages/DetailedProduct'
 import Client from './pages/Client'
 import DetailedProductAdmin from './pages/DetailedProductAdmin'
 import MagazineInscription from './pages/MagazineInscription'
+import MenProducts from './pages/MenProduct'
+// In your index.js or App.js
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import WomenProducts from './pages/womenProducts'
 
 function App() {
   useEffect(() => {
@@ -31,7 +36,10 @@ function App() {
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Home />} />
-            <Route path="/shop" element={<Shop />} />
+            {/* <Route path="/shop" element={<Shop />} /> */}
+            <Route path="/womenProducts" element={<WomenProducts />} />
+
+            <Route path="/menProducts" element={<MenProducts />} />
             <Route path="/onSales" element={<OnSales />} />
             <Route path="/product/:id" element={<DetailedProduct />} />
             <Route

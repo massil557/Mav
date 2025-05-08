@@ -17,49 +17,41 @@ const Client = () => {
 
   return (
     user && (
-      <div className="min-h=[100vh] min-w-[100vw] ">
-        <div className="m-auto w-full mb-[90px] flex flex-col gap-4 justify-center bgc items-center">
+      <div className="min-h-[100vh] w-[99vw]  overflow-x-hidden  grid grid-cols-[1fr_4fr]  relative overflow-x-hidden	">
+        <div className="overflow-x-hidden scrollbar-hide">
           <img
             src={user?.imagePath[0]}
             alt="profile_picture"
-            className="h-[100px] shadow-lg rounded-[50%]   p-[2px] mt-[80px] "
+            className="h-[70px] shadow-lg rounded-[50%] fixed  ml-3 p-[2px] mt-[80px] mb-2  "
           />
 
-          <p className=" text-center font-poppins-semibold text-xl ">
+          <p className=" w-full ml-4 font-poppins-semibold fixed top-[155px] text-xl">
             {user.username}
           </p>
+          <div className="m-auto w-full  fixed top-[160px] mt-[50px]">
+            <div
+              className="font-poppins-regular w-full ml-3 mb-5 cursor-pointer relative group  "
+              onClick={() =>
+                useToggle({
+                  favorites: true,
+                  historic: false,
+                })
+              }
+            >
+              Favorites
+            </div>
+            <div
+              className="font-poppins-regular w-full ml-3 mb-5 cursor-pointer relative group "
+              onClick={() => {
+                useToggle({ products: false, favorites: false, historic: true })
+              }}
+            >
+              Historic
+            </div>
+          </div>
         </div>
 
-        <div className="m-auto w-full  flex gap-[70px] justify-center text-2xl items-center mt-[50px]">
-          <span
-            className="font-poppins-regular  cursor-pointer relative group "
-            onClick={() =>
-              useToggle({
-                favorites: true,
-                historic: false,
-              })
-            }
-          >
-            Favorites
-            <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
-            <div
-              className={toggle.favorites ? 'border-black border-[1px]' : ''}
-            ></div>
-          </span>
-          <span
-            className="font-poppins-regular  cursor-pointer relative group "
-            onClick={() => {
-              useToggle({ products: false, favorites: false, historic: true })
-            }}
-          >
-            Historic
-            <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-black transition-all duration-300 group-hover:w-full"></span>
-            <div
-              className={toggle.historic ? 'border-black border-[1px]' : ''}
-            ></div>
-          </span>
-        </div>
-        <div className="w-[90vw] m-auto mt-[30px] grid grid-cols-6">
+        <div className="w-full  h-full  overflow-x-hidden">
           {toggle.favorites && <FavoriteComponent user={user} />}
           {toggle.historic && <HistoricComponent />}
         </div>

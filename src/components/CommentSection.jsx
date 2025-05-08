@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 const CommentSection = ({ productId }) => {
   const [comments, setComments] = useState([])
   const [newComment, setNewComment] = useState('')
   const user = JSON.parse(localStorage.getItem('user'))
   const [toggle, setToggle] = useState(false)
+  const navigate = useNavigate()
+
   useEffect(() => {
     const fetchComments = async () => {
       try {
@@ -39,6 +42,7 @@ const CommentSection = ({ productId }) => {
       }
     } else {
       alert('Please login to add a comment')
+      navigate('/login')
     }
   }
 

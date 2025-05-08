@@ -17,6 +17,7 @@ const InsertProduct = () => {
     price: '',
     details: '',
     category: 'Fashion',
+    subcategory: 'shirts',
     gender: 'men',
     checkedS: false,
     checkedM: false,
@@ -139,6 +140,41 @@ const InsertProduct = () => {
             <option value="Accessories">Accessories</option>
           </select>
         </div>
+
+        <div className="w-full flex justify-center">
+          <select
+            className="w-[350px] h-[40px] mt-[30px] pl-4 rounded-[15px] focus:outline-none bg-gray-200 text-start font-poppins-regular text-md"
+            value={product.subCategory}
+            onChange={(e) => {
+              setProduct({ ...product, subCategory: e.target.value })
+            }}
+          >
+            {product.category === 'Fashion' && (
+              <>
+                <option value="shirts">Shirts</option>
+                <option value="pants">Pants</option>
+                <option value="suits">Suits</option>
+                <option value="shoes">Shoes</option>
+              </>
+            )}
+            {product.category === 'Beauty' && (
+              <>
+                <option value="makeup">Make Up</option>
+                <option value="selfcare">Self Care</option>
+              </>
+            )}
+            {product.category === 'Fragrances' && (
+              <option value="fragrances">Fragrances</option>
+            )}
+            {product.category === 'Accessories' && (
+              <>
+                <option value="watches">Watches</option>
+                <option value="hairclipper">Hair clipper</option>
+              </>
+            )}
+          </select>
+        </div>
+
         <div className=" w-full flex justify-center ">
           <select
             className="w-[350px] h-[40px] mt-[30px] pl-4 rounded-[15px]   focus:outline-none  bg-gray-200 text-start  font-poppins-regular text-md"

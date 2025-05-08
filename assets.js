@@ -32,6 +32,24 @@ import skincare from './src/assets/images/skinCare.jpg'
 import login from './src/assets/images/forlogin3jpg.jpg'
 import signUpImage from './src/assets/images/forlogin4.jpg'
 import empty from './src/assets/images/empty.jpg'
+import manP from './src/assets/images/ok.jpg'
+import womanP from './src/assets/images/Sans titre5.png'
+import shirt from './src/assets/images/menProducts/tshirt.jpg'
+import pants from './src/assets/images/menProducts/pants.jpg'
+import suit from './src/assets/images/menProducts/suits.jpg'
+import watches from './src/assets/images/menProducts/whatches.jpg'
+import fragrances from './src/assets/images/menProducts/fragrences.jpg'
+import care from './src/assets/images/menProducts/products.jpg'
+import shoes from './src/assets/images/menProducts/shoes.jpg'
+import wShirt from './src/assets/images/womenProducts/Wshirt.jpg'
+import wpants from './src/assets/images/womenProducts/wpants.jpg'
+import dress from './src/assets/images/womenProducts/dress.jpg'
+import wWatches from './src/assets/images/womenProducts/www.jpg'
+import wFragrances from './src/assets/images/womenProducts/wf.jpg'
+import wcare from './src/assets/images/womenProducts/wskin.jpg'
+import wShoes from './src/assets/images/womenProducts/ws.jpg'
+import makeup2 from './src/assets/images/womenProducts/thisthing1.jpg'
+
 
 
 
@@ -43,5 +61,19 @@ const pictsTab = [man1, man2, man3, man5, man6, man7, makeup, elexir, powder2, p
 
 export {
     login, logo, loop, user1, cart, dark, magma, emerald, perfume, tint, powder, david, pictsTab, path, sky,
-    sunset, louboutin, makeup, elexir, skincare, Rolex, signUpImage, empty
+    sunset, louboutin, makeup, elexir, skincare, Rolex, signUpImage, empty, manP, womanP
+}
+
+export {
+    shirt, pants, suit, watches, fragrances, care, shoes
+}
+export {
+    wShirt,
+    wpants,
+    dress,
+    wWatches,
+    wFragrances,
+    wcare,
+    wShoes,
+    makeup2
 }

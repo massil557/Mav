@@ -1,9 +1,11 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { use, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import CommentSection from '../components/CommentSection'
-
+import { useNavigate } from 'react-router-dom'
 const DetailedProduct = () => {
+  const navigate = useNavigate()
+  const user = JSON.parse(localStorage.getItem('user'))
   const { id } = useParams()
   const [product, setProduct] = useState(null)
   const [selectedColor, setSelectedColor] = useState(null)
@@ -25,13 +27,35 @@ const DetailedProduct = () => {
     fetchData()
   }, [id])
 
-  const handleBuyNow = () => {
+  const handleBuyNow = async () => {
+    if (!user) {
+      alert('you have to login first')
+      return navigate('/login')
+    }
+    try {
+      await axios.post(`http://localhost:3000/add-to-cart/${id}`)
+    } catch (error) {
+      console.error('Error adding product to cart:', error)
+    }
     alert('Redirecting to payment gateway...')
   }
 
-  const handleRating = (value) => {
+  const handleRating = async (value) => {
+    if (!user) {
+      alert('you have to login first')
+      return navigate('/login')
+    }
     setRating(value)
     alert(`You rated this product ${value} stars!`)
+
+    try {
+      await axios.post(`http://localhost:3000/rate-product/${id}`, {
+        userId: user._id,
+        value: value,
+      })
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   if (!product) {

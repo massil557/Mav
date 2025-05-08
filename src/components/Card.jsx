@@ -193,7 +193,7 @@ export const Card = ({
   }
 
   return (
-    <div className="w-[200px] h-[350px] cursor-pointer overflow-hidden font-poppins-regular m-10 relative">
+    <div className="  w-[200px] h-[350px] cursor-pointer overflow-hidden font-poppins-regular m-10 relative">
       <div
         className="absolute top-2 right-2 cursor-pointer"
         onClick={() => setShowOptions(!showOptions)}

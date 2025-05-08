@@ -27,7 +27,7 @@ export const FavoriteComponent = ({ user }) => {
 
   return (
     result && (
-      <div className="grid grid-cols-5 m-auto min-w-[80vw]">
+      <div className="grid grid-cols-4  ">
         {result.map((element) => {
           return (
             <Card
