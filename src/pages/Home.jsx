@@ -1,10 +1,10 @@
-import { useEffect } from 'react'
 import Card from '../components/Card'
 import { useTransform, useScroll } from 'framer-motion'
 import MotionComponent from '../components/MotionComponent'
 import Column from '../components/Column'
 import styles from '../page.module.scss'
 import { useRef } from 'react'
+import { motion } from 'framer-motion'
 
 import {
   dark,
@@ -39,12 +39,28 @@ export const Home = () => {
 
   return (
     <div className="pt-[50px] overflow-x-hidden">
-      <div className="">
+      {/* <div className="">
         <img
           src={Banner_image}
           alt=""
           className="object-cover min-h-[100vh] "
         />
+      </div> */}
+      <div className="relative w-full h-screen">
+        <img
+          src={Banner_image}
+          alt="Banner"
+          className="object-cover w-full h-full"
+        />
+
+        <motion.div
+          initial={{ opacity: 0, y: 50, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1.4, ease: 'easeOut' }}
+          className="absolute font-poppins-regular bottom-90 left-1/2 -translate-x-1/2 text-white text-3xl md:text-5xl font-bold drop-shadow-[0_5px_5px_rgba(0,0,0,0.6)] px-4 text-center whitespace-nowrap"
+        >
+          Discover the Perfect Style—Crafted Just for You
+        </motion.div>
       </div>
 
       <main className={styles.main}>

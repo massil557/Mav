@@ -15,8 +15,8 @@ export const Links = () => {
       <Link to="/onSales" className=" m-auto ">
         on Sale
       </Link>
-      <Link to="/" className="m-auto ">
-        New Arrivals
+      <Link to="/iASearch" className="m-auto ">
+        IA Search
       </Link>
       <Link to="/" className=" m-auto ">
         Brands

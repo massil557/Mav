@@ -28,13 +28,13 @@ const Magazine = () => {
             <img
               src={user?.imagePath[0]}
               alt="profile_picture"
-              className="h-[70px] shadow-lg rounded-[50%] fixed  ml-3 p-[2px] mt-[80px] mb-2 "
+              className="h-[70px] shadow-lg rounded-[50%] fixed  ml-3 p-[2px] mt-[40px] mb-2 "
               onClick={() => {
                 navigate('/InsertProduct')
               }}
             />
 
-            <p className=" w-full ml-4 font-poppins-semibold fixed top-[155px] text-xl ">
+            <p className=" w-full ml-4 font-poppins-semibold fixed top-[120px] text-xl ">
               {user.username}
             </p>
             <div className=" fixed top-[160px] mt-[50px] ml-3 ">

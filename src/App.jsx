@@ -19,6 +19,7 @@ import MenProducts from './pages/MenProduct'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import WomenProducts from './pages/womenProducts'
+import IASearch from './pages/IASearch'
 
 function App() {
   useEffect(() => {
@@ -46,6 +47,7 @@ function App() {
               path="/productDetailed/:id"
               element={<DetailedProductAdmin />}
             />
+            <Route path="/iASearch" element={<IASearch />} />
           </Route>
           <Route path="/Login" element={<Login />} />
           <Route path="/SignUp" element={<SignUp />} />

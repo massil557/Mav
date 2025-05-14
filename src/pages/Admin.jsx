@@ -6,17 +6,18 @@ import NewProducts from '../components/NewProducts'
 import { useNavigate } from 'react-router-dom'
 import NewMagazine from '../components/NewMagazine'
 import ReportedProducts from '../components/ReportedProducts'
-
+import AdminDashBoard from '../components/AdminDashBoard'
 const Admin = () => {
   const navigate = useNavigate()
 
   const [toggle, useToggle] = useState({
-    newProducts: true,
+    newProducts: false,
     newMagazines: false,
     ReportedProducts: false,
     ReportedMagazines: false,
     favorites: false,
     historic: false,
+    AdminDashBoard: true,
   })
   const { user, setUser } = useContext(GlobalContext)
 
@@ -34,13 +35,30 @@ const Admin = () => {
             <img
               src={user?.imagePath[0]}
               alt="profile_picture"
-              className="h-[70px] shadow-lg rounded-[50%] fixed  ml-3 p-[2px] mt-[80px] mb-2 "
+              className="h-[70px] shadow-lg rounded-[50%] fixed  ml-3 p-[2px] mt-[40px] mb-2 "
             />
 
-            <p className="w-full ml-4 font-poppins-semibold fixed top-[155px] text-xl ">
+            <p className="w-full ml-4 font-poppins-semibold fixed top-[120px] text-xl ">
               {user.username}
             </p>
             <div className="m-auto w-full  fixed top-[160px] mt-[50px]">
+              <div
+                className="font-poppins-regular w-full ml-3 mb-5 cursor-pointer relative group "
+                onClick={() =>
+                  useToggle({
+                    newProducts: false,
+                    newMagazines: false,
+                    ReportedProducts: false,
+                    ReportedMagazines: false,
+                    favorites: false,
+                    historic: false,
+                    AdminDashBoard: true,
+                  })
+                }
+              >
+                DashBoard
+              </div>
+
               <div
                 className="font-poppins-regular w-full ml-3 mb-5 cursor-pointer relative group "
                 onClick={() =>
@@ -51,6 +69,7 @@ const Admin = () => {
                     ReportedMagazines: false,
                     favorites: false,
                     historic: false,
+                    AdminDashBoard: false,
                   })
                 }
               >
@@ -67,6 +86,7 @@ const Admin = () => {
                     ReportedMagazines: false,
                     favorites: false,
                     historic: false,
+                    AdminDashBoard: false,
                   })
                 }}
               >
@@ -83,6 +103,7 @@ const Admin = () => {
                     ReportedMagazines: false,
                     favorites: false,
                     historic: false,
+                    AdminDashBoard: false,
                   })
                 }
               >
@@ -99,6 +120,7 @@ const Admin = () => {
                     ReportedMagazines: true,
                     favorites: false,
                     historic: false,
+                    AdminDashBoard: false,
                   })
                 }
               >
@@ -106,7 +128,7 @@ const Admin = () => {
               </div>
 
               <div
-                className="font-poppins-regular w-full ml-3 mb-5  cursor-pointer relative group "
+                className="font-poppins-regular w-full ml-3 mb-5  cursor-pointer relative group  "
                 onClick={() =>
                   useToggle({
                     newProducts: false,
@@ -115,6 +137,7 @@ const Admin = () => {
                     ReportedMagazines: false,
                     favorites: true,
                     historic: false,
+                    AdminDashBoard: false,
                   })
                 }
               >
@@ -129,6 +152,7 @@ const Admin = () => {
           {toggle.historic && <HistoricComponent />}
           {toggle.newMagazines && <NewMagazine />}
           {toggle.ReportedProducts && <ReportedProducts />}
+          {toggle.AdminDashBoard && <AdminDashBoard />}
         </div>
       </div>
     )
