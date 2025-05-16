@@ -18,9 +18,7 @@ export const Links = () => {
       <Link to="/iASearch" className="m-auto ">
         IA Search
       </Link>
-      <Link to="/" className=" m-auto ">
-        Brands
-      </Link>
+
       {show && <ShopC setShow={setShow} />}
     </div>
   )

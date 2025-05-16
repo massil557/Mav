@@ -26,10 +26,6 @@ const InsertProduct = () => {
     available: [],
   })
 
-  console.log(imageColorNumber)
-  console.log(totalQuantity)
-  console.log(product)
-
   console.log(product)
 
   const handelSubmit = async (e) => {
@@ -142,11 +138,11 @@ const InsertProduct = () => {
         </div>
 
         <div className="w-full flex justify-center">
-          <select
+          {/* <select
             className="w-[350px] h-[40px] mt-[30px] pl-4 rounded-[15px] focus:outline-none bg-gray-200 text-start font-poppins-regular text-md"
-            value={product.subCategory}
+            value={product.subcategory}
             onChange={(e) => {
-              setProduct({ ...product, subCategory: e.target.value })
+              setProduct({ ...product, subcategory: e.target.value })
             }}
           >
             {product.category === 'Fashion' && (
@@ -170,6 +166,47 @@ const InsertProduct = () => {
               <>
                 <option value="watches">Watches</option>
                 <option value="hairclipper">Hair clipper</option>
+              </>
+            )}
+          </select> */}
+          <select
+            className="w-[350px] h-[40px] mt-[30px] pl-4 rounded-[15px] focus:outline-none bg-gray-200 text-start font-poppins-regular text-md"
+            value={product.subcategory}
+            onChange={(e) => {
+              setProduct({ ...product, subcategory: e.target.value })
+            }}
+          >
+            {/* Default selectable option */}
+            <option value="">Select a subcategory</option>
+
+            {/* Fashion options */}
+            {product.category === 'Fashion' && (
+              <>
+                <option value="shirts">Shirts</option>
+                <option value="pants">Pants</option>
+                <option value="suits">Suits</option>
+                <option value="shoes">Shoes</option>
+              </>
+            )}
+
+            {/* Beauty options */}
+            {product.category === 'Beauty' && (
+              <>
+                <option value="makeup">Make Up</option>
+                <option value="selfcare">Self Care</option>
+              </>
+            )}
+
+            {/* Fragrances option */}
+            {product.category === 'Fragrances' && (
+              <option value="fragrances">Fragrances</option>
+            )}
+
+            {/* Accessories options */}
+            {product.category === 'Accessories' && (
+              <>
+                <option value="watches">Watches</option>
+                <option value="hairclipper">Hair Clipper</option>
               </>
             )}
           </select>
