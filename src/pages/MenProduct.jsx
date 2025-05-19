@@ -14,7 +14,14 @@ import {
 
 const MenProducts = () => {
   const [activeId, setActiveId] = useState('')
-  const [result, setResult] = useState([])
+
+  const [shirts, setShirts] = useState([])
+  const [pantss, setPants] = useState([])
+  const [selfcare, setSelfcare] = useState([])
+  const [suits, setSuits] = useState([])
+  const [watchess, setWatches] = useState([])
+  const [fragrancess, setfragrances] = useState([])
+  const [shoess, setShoes] = useState([])
 
   const sectionRefs = {
     shirts: useRef(null),
@@ -29,8 +36,28 @@ const MenProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get('http://localhost:3000/api/getProduct')
-        setResult(res.data)
+        const res = await axios.get('http://localhost:3000/api/getProduct/men')
+
+        const shirts = res.data.filter((item) => item.subcategory === 'shirts')
+        const pants = res.data.filter((item) => item.subcategory === 'pants')
+        const selfcare = res.data.filter(
+          (item) => item.subcategory === 'selfcare'
+        )
+        const suits = res.data.filter((item) => item.subcategory === 'suits')
+        const watches = res.data.filter(
+          (item) => item.subcategory === 'watches'
+        )
+        const fragrances = res.data.filter(
+          (item) => item.subcategory === 'fragrances'
+        )
+        const shoes = res.data.filter((item) => item.subcategory === 'shoes')
+        setShirts(shirts)
+        setPants(pants)
+        setSelfcare(selfcare)
+        setSuits(suits)
+        setWatches(watches)
+        setfragrances(fragrances)
+        setShoes(shoes)
       } catch (error) {
         console.error(error)
       }
@@ -98,7 +125,7 @@ const MenProducts = () => {
             Shirts
           </h2>
           <div className="grid grid-cols-[3fr_1.3fr] gap-4">
-            <ProductCarousel cards={result} />
+            <ProductCarousel cards={shirts} />
             <img
               src={shirt}
               alt="shirt"
@@ -124,7 +151,7 @@ const MenProducts = () => {
               className="rounded-[15px] shadow-md"
             />
 
-            <ProductCarousel cards={result} />
+            <ProductCarousel cards={pantss} />
           </div>
         </div>
 
@@ -143,7 +170,7 @@ const MenProducts = () => {
               style={{ width: '100%' }}
               className="rounded-[15px] shadow-md"
             />
-            <ProductCarousel cards={result} />
+            <ProductCarousel cards={selfcare} />
           </div>
         </div>
 
@@ -163,7 +190,7 @@ const MenProducts = () => {
               className="rounded-[15px] shadow-md"
             />
 
-            <ProductCarousel cards={result} />
+            <ProductCarousel cards={suits} />
           </div>
         </div>
         <div
@@ -175,7 +202,7 @@ const MenProducts = () => {
             watches
           </h2>
           <div className="grid grid-cols-[3fr_1.3fr] gap-4">
-            <ProductCarousel cards={result} />
+            <ProductCarousel cards={watchess} />
             <img
               src={watches}
               alt="SelfCare"
@@ -200,13 +227,13 @@ const MenProducts = () => {
               className="rounded-[15px] shadow-md"
             />
 
-            <ProductCarousel cards={result} />
+            <ProductCarousel cards={fragrancess} />
           </div>
         </div>
         <div id="shoes" ref={sectionRefs.shoes}>
           <h2 className="font-poppins-semibold  text-xl mb-[5px]">Shoes </h2>
           <div className="grid grid-cols-[3fr_1.3fr] gap-4">
-            <ProductCarousel cards={result} />
+            <ProductCarousel cards={shoess} />
             <img
               src={shoes}
               alt="shoes"

@@ -185,6 +185,8 @@ const InsertProduct = () => {
                 <option value="shirts">Shirts</option>
                 <option value="pants">Pants</option>
                 <option value="suits">Suits</option>
+                <option value="Dresses">Dresses</option>
+
                 <option value="shoes">Shoes</option>
               </>
             )}

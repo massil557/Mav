@@ -16,6 +16,14 @@ import {
 const WomenProducts = () => {
   const [activeId, setActiveId] = useState('')
   const [result, setResult] = useState([])
+  const [shirts, setShirts] = useState([])
+  const [pantss, setPants] = useState([])
+  const [selfcare, setSelfcare] = useState([])
+  const [dresses, setDresses] = useState([])
+  const [watchess, setWatches] = useState([])
+  const [fragrancess, setfragrances] = useState([])
+  const [shoess, setShoes] = useState([])
+  const [makeups, setMakeups] = useState([])
 
   const sectionRefs = {
     shirts: useRef(null),
@@ -31,8 +39,35 @@ const WomenProducts = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get('http://localhost:3000/api/getProduct')
+        const res = await axios.get(
+          'http://localhost:3000/api/getProduct/women'
+        )
         setResult(res.data)
+        const shirts = res.data.filter((item) => item.subcategory === 'shirts')
+        const pants = res.data.filter((item) => item.subcategory === 'pants')
+        const selfcare = res.data.filter(
+          (item) => item.subcategory === 'selfcare'
+        )
+        const dresses = res.data.filter(
+          (item) => item.subcategory === 'Dresses'
+        )
+        const watches = res.data.filter(
+          (item) => item.subcategory === 'watches'
+        )
+        const fragrances = res.data.filter(
+          (item) => item.subcategory === 'fragrances'
+        )
+        const shoes = res.data.filter((item) => item.subcategory === 'shoes')
+        const makeups = res.data.filter((item) => item.subcategory === 'makeup')
+
+        setShirts(shirts)
+        setPants(pants)
+        setSelfcare(selfcare)
+        setDresses(dresses)
+        setWatches(watches)
+        setfragrances(fragrances)
+        setShoes(shoes)
+        setMakeups(makeups)
       } catch (error) {
         console.error(error)
       }
@@ -100,7 +135,7 @@ const WomenProducts = () => {
             Shirts
           </h2>
           <div className="grid grid-cols-[3fr_1.3fr] gap-4">
-            <ProductCarousel cards={result} />
+            <ProductCarousel cards={shirts} />
             <img
               src={wShirt}
               alt="shirt"
@@ -126,7 +161,7 @@ const WomenProducts = () => {
               className="rounded-[15px] shadow-md"
             />
 
-            <ProductCarousel cards={result} />
+            <ProductCarousel cards={pantss} />
           </div>
         </div>
 
@@ -139,7 +174,7 @@ const WomenProducts = () => {
             SelfCare
           </h2>
           <div className="grid grid-cols-[3fr_1.3fr] gap-4">
-            <ProductCarousel cards={result} />
+            <ProductCarousel cards={selfcare} />
             <img
               src={wcare}
               alt="SelfCare"
@@ -165,7 +200,7 @@ const WomenProducts = () => {
               className="rounded-[15px] shadow-md"
             />
 
-            <ProductCarousel cards={result} />
+            <ProductCarousel cards={dresses} />
           </div>
         </div>
         <div
@@ -183,7 +218,7 @@ const WomenProducts = () => {
               style={{ width: '100%' }}
               className="rounded-[15px] shadow-md"
             />
-            <ProductCarousel cards={result} />
+            <ProductCarousel cards={watchess} />
           </div>
         </div>
         <div
@@ -202,13 +237,13 @@ const WomenProducts = () => {
               className="rounded-[15px] shadow-md"
             />
 
-            <ProductCarousel cards={result} />
+            <ProductCarousel cards={fragrancess} />
           </div>
         </div>
         <div id="shoes" ref={sectionRefs.shoes}>
           <h2 className="font-poppins-semibold  text-xl mb-[5px]">Shoes </h2>
           <div className="grid grid-cols-[3fr_1.3fr] gap-4">
-            <ProductCarousel cards={result} />
+            <ProductCarousel cards={shoess} />
             <img
               src={wShoes}
               alt="shoes"
@@ -233,7 +268,7 @@ const WomenProducts = () => {
               style={{ width: '100%' }}
               className="rounded-[15px] shadow-md"
             />
-            <ProductCarousel cards={result} />
+            <ProductCarousel cards={makeups} />
           </div>
         </div>
       </div>
